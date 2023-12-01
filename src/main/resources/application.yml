@@ -1,0 +1,34 @@
+server:
+  port: 8384
+
+application:
+  id: kafka-streams-schedule-operations
+
+bootstrap:
+  servers: localhost:29092
+
+input:
+  topic:
+    name: login-events
+    partitions: 1
+    replication:
+      factor: 1
+
+output:
+  topic:
+    name: output-topic
+    partitions: 1
+    replication:
+      factor: 1
+
+spring:
+  kafka:
+    admin:
+      auto-create: true
+
+    bootstrap-servers: localhost:29092
+    streams:
+      bootstrap-servers: localhost:29092
+      application-id: ${application.id}
+    consumer:
+      group-id: ${application.id}
